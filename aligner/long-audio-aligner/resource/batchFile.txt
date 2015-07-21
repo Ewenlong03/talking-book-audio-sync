@@ -1,1 +1,1 @@
-../data/dream/dream.txt ../data/dream/dream.wav
+/Users/weiyi/Documents/TalkingBook/audiosync-master-li2/aligner/../../rawdata/NCE03/III-01.lrc /Users/weiyi/Documents/TalkingBook/audiosync-master-li2/aligner/../../rawdata/NCE03/III-01.wav
