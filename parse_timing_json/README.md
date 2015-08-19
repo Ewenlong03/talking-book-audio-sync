@@ -1,4 +1,4 @@
-用法：
+## 用法
 
 `python parse_timing_json.py raw_timing.json raw.txt`
 
@@ -47,9 +47,9 @@ all(421.51202,421.57187) a(421.57187,421.67166) sudden(421.7315,422.37006) i(422
 ], 
 
 
-但是，long-audio-align输出的包含时间的文本是有缺陷的：无标点符号（包括段落分隔符）；错字（youre, dont, isnt之类的由于'缺失导致的错误）；漏字。
+**但是，long-audio-align输出的包含时间的文本是有缺陷的：无标点符号（包括段落分隔符）；错字（youre, dont, isnt之类的由于'缺失导致的错误）；漏字。**
 
-于是我写了一个python脚本：parse_timing_json.py，它比较原文和long-audio-align输出的json文件，把原文未被识别的文本插入到json文件中，得到一个包含完整文本和时间的json文件：
+于是我写了一个python脚本：parse_timing_json.py，它比较原文和long-audio-align输出的json文件，把原文未被识别的文本插入到json文件中，得到**一个包含完整文本和时间的json文件**：
 
 [
 ". All", 
@@ -94,6 +94,15 @@ all(421.51202,421.57187) a(421.57187,421.67166) sudden(421.7315,422.37006) i(422
 
 但是，这个脚本容错性非常不好，或者说，对输入文件非常挑剔，输入json文件漏字不能太多，和txt文件必须几乎一致，这个脚本才可以把时间戳和原文做匹配。
 幸运的是，long-audio-align产生的json文件可以满足。
+
+
+## parse_new_line.py
+
+### 处理换行符
+如果json文件中的字符串包含换行符，则以换行符为界拆分字符串，换行符单独拿出来。目的是方便app处理换行：app读取到换行符后，使其占据整个linearlayout，使app所显示的文本段落结构更加清晰。
+
+### 处理超过行宽的字符串
+目前app处理timing-json的方法是：读取字符串创建TextView然后添加到LinearLayout，如果string的宽度超过行宽，则添加到下一个行；但是若字符串长度超过行宽，将导致超出部分不被显示。这个脚本的作用是，拆分字符串！
 
 
 李2
